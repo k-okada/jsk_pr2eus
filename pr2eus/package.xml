@@ -37,13 +37,10 @@
 
   <!-- Dependencies needed only for running tests. -->
   <test_depend>rostest</test_depend>
-  <test_depend>laser_filters</test_depend>
   <test_depend>pr2_gazebo</test_depend>
-  <test_depend>pr2_navigation_self_filter</test_depend>
   <test_depend>pr2_navigation_slam</test_depend>
   <test_depend>pr2_navigation_config</test_depend>
   <test_depend>robot_state_publisher</test_depend>
-  <test_depend>semantic_point_annotator</test_depend>
 
   <export>
     <pr2eus robot-name="pr2" interface-file="${prefix}/pr2-interface.l" />
