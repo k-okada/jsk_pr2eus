@@ -6,13 +6,18 @@
 
 (init-unit-test)
 
+(defvar *pr2-name*
+  (case (round (ros::get-param "~pr2_number" 1012))
+    (1012 :pr1012)
+    (1040 :pr1040)))
+(warning-message 2 "Robot to test: ~A~%" *pr2-name*)
 (when (not (boundp '*pr2-unstable*))
   (load "/tmp/pr2.l")
-  (setq *pr2-unstable* (pr2))
+  (setq *pr2-unstable* (pr2 *pr2-name*))
   (setq *pr2-cameras-unstable* (send *pr2-unstable* :cameras)))
 (when (not (boundp '*pr2-stable*))
   (load "package://pr2eus/pr2.l")
-  (setq *pr2-stable* (pr2))
+  (setq *pr2-stable* (pr2 *pr2-name*))
   (setq *pr2-cameras-stable* (send *pr2-stable* :cameras)))
 
 (deftest test-angle-vector

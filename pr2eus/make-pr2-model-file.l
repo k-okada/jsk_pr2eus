@@ -106,7 +106,7 @@
     (setq robot-names (get-pr2-names))
     (ros::ros-info "found ~A robots, ~A" (length robot-names) robot-names)
 
-    (unless (setq robot-description (ros::get-param (format nil "/~A/robot_description" (car robot-names))))
+    (unless (setq robot-description (ros::get-param (format nil "/~A/robot_description" (or (car robot-names) ""))))
       (ros::ros-error "could not load model file from /robot_description~%")
       (return-from make-pr2-model-file))
 
@@ -117,12 +117,12 @@
                 "narrow_stereo/right"
                 "wide_stereo/left"
                 "wide_stereo/right"
-                 "l_forearm_cam"
-                 "r_forearm_cam"
-                 "prosilica"
-                 "kinect_head/rgb"
-                 "kinect_head/depth"
-                 ))
+                "l_forearm_cam"
+                "r_forearm_cam"
+                "prosilica"
+                "kinect_head/rgb"
+                "kinect_head/depth"
+                ))
     (dolist (robot-name robot-names)
       (let (valid-cameras)
         (dolist (camera-path camera-paths)
